@@ -6,8 +6,8 @@
 - **训练数据**：作者用的就是mxnet原版项目中的训练数据，然后用脚本转换成TF格式
 - **训练流程**：执行`train_nets.py`进行训练，在p2.xlarge(K80)上若要达到99.6%准确度，花费约两周；在g3.4large(M60)花费约一周
 ## 所需环境
-首先确认机子上CUDA的版本，使用`nvcc --version`来看版本，应该是8.0或者是9.0
-`pip3 install mxnet-cu80` 或者 `pip3 install mxnet-cu90`
+首先确认机子上CUDA的版本，使用`nvcc --version`来看版本，应该是8.0或者是9.0  
+`pip3 install mxnet-cu80` 或者 `pip3 install mxnet-cu90`  
 `pip3 install tensorlayer` 如果在执行训练脚本时报错，尝试`pip3 install tensorlayer==1.7`
 ## 准备数据
 - 训练已经传到S3上，直接`aws s3 cp s3://kiwi-ai-ruobo/Insightface-tf-train/tfrecords/tran.tfrecords /YOUR_TRAIN_PATH/`即可
