@@ -15,7 +15,7 @@ git clone https://github.com/ruobop/InsightFace_TF
 cd InsightFace_TF
 python3 train_nets.py --eval_db_path=/YOUR_LFW_PATH/ --tfrecords_file_path=/YOUR_TRAIN_PATH/
 ```
-你可以调整`--batch_size`参数，默认是`--batch_size=48`，根据显存大小来调整
+你可以调整`--batch_size`参数，默认是`--batch_size=48`，根据显存大小来调整  
 另开一个screen/session
 ``` sh
 tensorboard --logdir=./output/summary/
