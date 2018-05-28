@@ -24,4 +24,4 @@ python3 train_nets.py --eval_db_path=/YOUR_LFW_PATH/ --tfrecords_file_path=/YOUR
 ``` sh
 tensorboard --logdir=./output/summary/
 ```
-远程连接`IP_ADDRESS:6006`即可
+远程浏览器访问`IP_ADDRESS:6006`即可
