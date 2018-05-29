@@ -25,3 +25,54 @@ python3 train_nets.py --eval_db_path=/YOUR_LFW_PATH/ --tfrecords_file_path=/YOUR
 tensorboard --logdir=./output/summary/
 ```
 远程浏览器访问`IP_ADDRESS:6006`即可
+## 查看当前训练LFW结果
+下载log文件到本地
+``` sh
+scp -i kiwi-ai-wuxiang.pem ubuntu@YOUR_IP_ADDRESS:insightface_tf/output/logs/train_2018-05-15-08-30.log ./
+```
+编辑如下python脚本，例如保存为parse.py
+``` python
+# -*- coding: utf-8 -*-
+
+import argparse
+
+parser = argparse.ArgumentParser(description='Parse a log file.')
+parser.add_argument('log_path', help='path of the log file')
+args = parser.parse_args()
+
+path = args.log_path
+
+f = open(path, 'r')
+lines = f.readlines()
+f.close()
+
+if 'Best' in lines[-3]:
+    iter_line = lines[-5]
+    acc_line = lines[-4]
+else:
+    iter_line = lines[-2]
+    acc_line = lines[-1]
+
+#print(iter_line)
+#print(acc_line)
+
+iter_list = iter_line.split('\n')[0].split(',')
+acc_list = acc_line.split('\n')[0].split(',')
+
+adict = {}
+for i in range(len(iter_list)):
+    adict[int(iter_list[i])] = float(acc_list[i])
+
+sorted_list = sorted(adict.items(), key=lambda d: d[0])
+for sl in sorted_list:
+    print('iter=%d, lfw_acc=%.4f' % (sl[0], sl[1]))
+
+sorted_list_by_val = sorted(adict.items(), key=lambda d: d[1])
+sl = sorted_list_by_val[-1]
+print('###########################\nBest result: iter=%d, lfw_acc=%.4f' % (sl[0], sl[1]))
+```
+运行脚本
+``` sh
+python3 parse.py PATH_TO_LOG_FILE
+```
+
