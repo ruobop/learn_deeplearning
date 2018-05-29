@@ -30,7 +30,7 @@ tensorboard --logdir=./output/summary/
 ``` sh
 scp -i kiwi-ai-wuxiang.pem ubuntu@YOUR_IP_ADDRESS:insightface_tf/output/logs/LOG_FILE_NAME LOCAL_LOG_PATH
 ```
-编辑如下python脚本，例如保存为parse.py
+在本地编辑如下python脚本，例如保存为parse.py
 ``` python
 # -*- coding: utf-8 -*-
 
@@ -71,7 +71,7 @@ sorted_list_by_val = sorted(adict.items(), key=lambda d: d[1])
 sl = sorted_list_by_val[-1]
 print('###########################\nBest result: iter=%d, lfw_acc=%.4f' % (sl[0], sl[1]))
 ```
-运行脚本
+在本地运行脚本
 ``` sh
 python3 parse.py PATH_TO_LOG_FILE
 ```
