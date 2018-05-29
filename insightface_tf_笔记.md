@@ -73,6 +73,6 @@ print('###########################\nBest result: iter=%d, lfw_acc=%.4f' % (sl[0]
 ```
 在本地运行脚本
 ``` bash
-python3 parse.py PATH_TO_LOG_FILE
+python3 parse.py LOCAL_LOG_PATH
 ```
 
