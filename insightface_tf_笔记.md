@@ -14,20 +14,20 @@
 - LFW测试数据已经传到S3上，直接`aws s3 cp s3://kiwi-ai-ruobo/Insightface-tf-train/faces_ms1m_112x112 /YOUR_LFW_PATH/ --recursive`即可
 ## 编辑&运行训练脚本
 开一个screen/session
-``` sh
+``` bash
 git clone https://github.com/ruobop/InsightFace_TF
 cd InsightFace_TF
 python3 train_nets.py --eval_db_path=/YOUR_LFW_PATH/ --tfrecords_file_path=/YOUR_TRAIN_PATH/
 ```
 你可以调整`--batch_size`参数，默认是`--batch_size=48`，根据显存大小来调整  
 另开一个screen/session
-``` sh
+``` bash
 tensorboard --logdir=./output/summary/
 ```
 远程浏览器访问`IP_ADDRESS:6006`即可
 ## 查看当前训练LFW结果
 下载log文件到本地
-``` sh
+``` bash
 scp -i kiwi-ai-wuxiang.pem ubuntu@YOUR_IP_ADDRESS:insightface_tf/output/logs/LOG_FILE_NAME LOCAL_LOG_PATH
 ```
 在本地编辑如下python脚本，例如保存为parse.py
@@ -72,7 +72,7 @@ sl = sorted_list_by_val[-1]
 print('###########################\nBest result: iter=%d, lfw_acc=%.4f' % (sl[0], sl[1]))
 ```
 在本地运行脚本
-``` sh
+``` bash
 python3 parse.py PATH_TO_LOG_FILE
 ```
 
