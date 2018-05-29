@@ -28,7 +28,7 @@ tensorboard --logdir=./output/summary/
 ## 查看当前训练LFW结果
 下载log文件到本地
 ``` sh
-scp -i kiwi-ai-wuxiang.pem ubuntu@YOUR_IP_ADDRESS:insightface_tf/output/logs/train_2018-05-15-08-30.log ./
+scp -i kiwi-ai-wuxiang.pem ubuntu@YOUR_IP_ADDRESS:insightface_tf/output/logs/LOG_FILE_NAME LOCAL_LOG_PATH
 ```
 编辑如下python脚本，例如保存为parse.py
 ``` python
